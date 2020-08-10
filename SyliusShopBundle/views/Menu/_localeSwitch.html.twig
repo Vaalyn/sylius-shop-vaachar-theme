@@ -1,0 +1,15 @@
+{% if locales|length > 1 %}
+    <div class="ui pointing dropdown link item" id="sylius-locale-selector" {{ sylius_test_html_attribute('locale-selector') }}>
+        <span class="text sylius-active-locale" data-tooltip="{{ active|sylius_locale_name }}" data-position="bottom center" data-inverted="" aria-label="{{ active|sylius_locale_name }}" {{ sylius_test_html_attribute('active-locale') }}><span class="flag-icon flag-icon-{{ active|sylius_locale_country|lower }}"></span></span>
+        <i class="dropdown icon"></i>
+        <div class="inverted menu z-depth-2">
+            {% for code in locales %}
+                {% if code is not same as(active) %}
+                    <a href="{{ path('sylius_shop_switch_locale', {'code': code}) }}" class="item sylius-available-locale center aligned" data-tooltip="{{ code|sylius_locale_name }}" data-position="top center" data-inverted="" aria-label="{{ code|sylius_locale_name }}" {{ sylius_test_html_attribute('available-locale') }}>
+                        <span class="flag-icon flag-icon-{{ code|sylius_locale_country|lower }}"></span>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

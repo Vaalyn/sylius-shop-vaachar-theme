@@ -1,0 +1,9 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+<span id="sylius-cart-total" {{ sylius_test_html_attribute('cart-total') }}>
+    {{- money.convertAndFormat(cart.itemsTotal) -}}
+</span>
+<span class="cart-icon">
+    <i class="shopping bag icon large"></i>
+    <span class="floating ui red label horizontal mini">{{- cart.items|length }}</spin>
+<span>

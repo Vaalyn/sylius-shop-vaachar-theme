@@ -1,0 +1,28 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+<div class="ui one column grid">
+    <div class="column">
+        <span class="ui huge green tag label header" id="product-price" {{ sylius_test_html_attribute('product-price', money.calculatePrice(product|sylius_resolve_variant)) }}>
+            {{ money.calculatePrice(product|sylius_resolve_variant) }}
+        </span>
+    </div>
+
+    <div id="product-taxes" class="nine wide column">
+        {% set productVariantTaxRate = vaachar_tax_rate_product_variant(product|sylius_resolve_variant) %}
+        {% set isGermanSmallBusiness = vaachar_is_german_small_business_tax_rate(productVariantTaxRate) %}
+
+        <span id="product-taxes-text" class="ui sub header grey{% if productVariantTaxRate is empty or isGermanSmallBusiness == true %} hide{% endif %}">
+            {% if productVariantTaxRate is not empty %}
+                {% if productVariantTaxRate.includedInPrice %}
+                    <span id="product-taxtes-included-in-price">{{ 'vaachar.tax_rate.inluded_in_price'|trans }}</span><span id="product-taxtes-excluded-from-price" class="hide">{{ 'vaachar.tax_rate.excluded_from_price'|trans }}</span> <span id="product-tax-rate-percentage">{{ productVariantTaxRate.amount * 100 }}</span>% {{ 'vaachar.tax_rate.vat'|trans }}
+                {% else %}
+                    <span id="product-taxtes-included-in-price" class="hide">{{ 'vaachar.tax_rate.inluded_in_price'|trans }}</span><span id="product-taxtes-excluded-from-price">{{ 'vaachar.tax_rate.excluded_from_price'|trans }}</span> <span id="product-tax-rate-percentage">{{ productVariantTaxRate.amount * 100 }}</span>% {{ 'vaachar.tax_rate.vat'|trans }}
+                {% endif %}
+            {% else %}
+                <span id="product-taxtes-included-in-price">{{ 'vaachar.tax_rate.inluded_in_price'|trans }}</span><span id="product-taxtes-excluded-from-price" class="hide">{{ 'vaachar.tax_rate.excluded_from_price'|trans }}</span> <span id="product-tax-rate-percentage"></span>% {{ 'vaachar.tax_rate.vat'|trans }}
+            {% endif %}
+        </span>
+        <span id="product-taxes-text-german-small-business" class="ui sub header grey inverted {% if isGermanSmallBusiness == false %} hide{% endif %}">{{ 'vaachar.tax_rate.german_small_business'|trans }}</span>
+    </div>
+
+</div>

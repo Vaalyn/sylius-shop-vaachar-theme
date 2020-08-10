@@ -1,0 +1,16 @@
+<div class="ui basic segment">
+    <div class="ui large text inverted menu">
+        <div class="ui small image">
+            <a href="{{ path('sylius_shop_homepage') }}"><img src="{{ asset('vaachar-theme/images/logo-with-name.png', 'vaaCharTheme') }}" /></a>
+        </div>
+        <div class="right inverted menu">
+            {% if order.customer.id|default(null) is not null %}
+                <div class="item" id="purchaser-email" {{ sylius_test_html_attribute('purchaser-name-or-email') }}>{{ 'sylius.ui.checking_out_as'|trans }} {{ order.customer.fullName|default(order.customer.email) }}.</div>
+            {% else %}
+                <div class="item">
+                    <a href="{{ path('sylius_shop_login') }}" class="ui inverted button">{{ 'sylius.ui.sign_in'|trans }}</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

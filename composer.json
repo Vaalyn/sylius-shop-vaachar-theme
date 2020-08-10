@@ -1,0 +1,25 @@
+{
+    "name": "vaalyn/vaachar-theme",
+    "description": "Sylius theme for VaaChar",
+    "authors": [
+        {
+            "name": "Vaalyn",
+            "email": "vaalyndev@gmail.com"
+        }
+    ],
+    "require": {
+        "bitbag/cms-plugin": "^2.3",
+        "bitbag/mollie-plugin": "^3.2.6",
+        "bitbag/product-bundle-plugin": "^1.0",
+        "monsieurbiz/sylius-search-plugin": "^0.2.0",
+        "setono/sylius-terms-plugin": "^1.0",
+        "sylius/invoicing-plugin": "dev-dev-add-flysystem-storage",
+        "sylius/refund-plugin": "^1.0.0-RC.3",
+        "sylius/shop-bundle": "^1.7"
+    },
+    "extra": {
+        "sylius-theme": {
+            "title": "VaaChar Theme"
+        }
+    }
+}

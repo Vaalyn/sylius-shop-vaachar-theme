@@ -1,0 +1,650 @@
+@import 'colors';
+
+a {
+    color: $linkColor;
+}
+
+.z-depth-1 {
+    box-shadow:
+        0 2px 2px 0 rgba(0,0,0,0.14),
+        0 3px 1px -2px rgba(0,0,0,0.12),
+        0 1px 5px 0 rgba(0,0,0,0.2) !important;
+}
+
+.z-depth-2 {
+    box-shadow:
+        0 4px 5px 0 rgba(0,0,0,0.14),
+        0 1px 10px 0 rgba(0,0,0,0.12),
+        0 2px 4px -1px rgba(0,0,0,0.3) !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.carousel-wrapper {
+    position: relative;
+}
+
+.carousel-nav .carousel-left,
+.carousel-nav .carousel-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-nav .carousel-left {
+    left: 0;
+}
+
+.carousel-nav .carousel-right {
+    right: -1px;
+}
+
+.carousel {
+    margin: 0 -1em;
+}
+
+.carousel-item {
+    margin-left: 2px;
+    padding: 5px 1em;
+    padding-left: 0;
+}
+
+.ui.green.button,
+.ui.green.buttons .button {
+    background-color: $green;
+}
+
+body {
+    color: $textColor;
+    letter-spacing: 1pt;
+    word-spacing: 1pt;
+}
+
+body.pushable > .pusher {
+    background-color: $bodyBackground;
+    padding-top: 43px;
+}
+
+.ui.inverted.sidebar.menu {
+    background: $sidebarBackground;
+}
+
+.ui.inverted.sidebar.menu .header.item .logo {
+    display: inline-block;
+}
+
+.ui.inverted.sidebar.menu .header.item span {
+    font-size: 1.3rem;
+    vertical-align: middle;
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+    .ui.container {
+        width: 95%;
+    }
+}
+
+#menu.ui.large.sticky.inverted.menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#menu .ui.image.logo {
+    box-sizing: content-box;
+    display: inline-block;
+    height: 42px;
+    padding: 4px;
+    width: auto;
+}
+
+#menu .ui.image.logo + span {
+    color: $textColor;
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+#menu .item.sidebar-trigger {
+    display: none;
+}
+
+@media only screen and (max-width: 767px) {
+    #menu .ui.image.logo {
+        display: none;
+    }
+
+    #menu .ui.image.logo + span {
+        display: none;
+    }
+
+    #menu .item.sidebar-trigger {
+        display: flex;
+    }
+}
+
+#menu > .ui.right.form.item {
+    padding: 0;
+}
+
+#menu .autocomplete-search .action:hover {
+    background: none;
+}
+
+#menu .autocomplete-search input[type=text] {
+    background: $autocompleteSearchInputBackground;
+    color: $textColor;
+}
+
+#menu .autocomplete-search input[type=text]:focus {
+    border: none;
+    border-right: 2px solid;
+    border-right-color: $autocompleteSearchInputBorderColor !important;
+}
+
+#menu .autocomplete-search input[type=text] + button.ui.button {
+    background: $autocompleteSearchButtonBackground;
+    border-radius: .28571429rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: $textColor;
+}
+
+#menu .autocomplete-search input[type=text] + button.ui.button:hover {
+    background: $autocompleteSearchButtonHoverBackground;
+}
+
+#menu .autocomplete-search .autocomplete-results {
+    max-height: calc(100vh - 45px);
+    overflow-y: scroll;
+    position: absolute;
+    top: 37px;
+    width: 100%;
+}
+
+#menu .autocomplete-search .autocomplete-results .ui.fluid.card {
+    margin-bottom: 0;
+    margin-top: 0;
+    border-radius: 0;
+}
+
+#menu .autocomplete-search .autocomplete-results .header.sylius-product-name {
+    font-size: 1em;
+}
+
+#menu .autocomplete-search .autocomplete-results .sylius-product-price {
+    border-top: 1px solid $autocompleteSearchResultsPriceBorderColor;
+    color: $textColor;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+#menu .autocomplete-search .autocomplete-results .auto-complete-no-result .inverted.header {
+    color: $textColor;
+}
+
+@media only screen and (max-width: 767px) {
+    #menu > .ui.right.form.item {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    #menu > .ui.right.form.item {
+        margin-left: 0 !important;
+    }
+
+    #menu .autocomplete-search input[type=text] {
+        width: 20vw;
+    }
+}
+
+#menu.ui.inverted.menu .item,
+#menu.ui.inverted.menu .item > a:not(.ui) {
+    color: $textColor !important;
+}
+
+#menu.ui.inverted.menu .item {
+    text-align: center;
+}
+
+.ui.menu .dropdown.item .inverted.menu {
+    background: $dropdownMenuBackground;
+}
+
+.ui.menu .dropdown.item .inverted.menu::after {
+    background: $dropdownMenuBackground;
+}
+
+#menu .cart.button {
+    border-radius: 0;
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+#menu .cart.button .caret.down.icon {
+    vertical-align: middle;
+}
+
+#menu .cart.button #sylius-cart-total {
+    vertical-align: bottom;
+}
+
+#menu .cart.button .cart-icon {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 0;
+    position: relative;
+}
+
+@media only screen and (max-width: 992px) {
+    #menu .cart.button #sylius-cart-total {
+        display: none;
+    }
+
+    #menu .cart.button .cart-icon {
+        margin-left: 0;
+    }
+}
+
+#menu .cart.button .cart-icon .icon {
+    line-height: 1.3;
+}
+
+#menu .cart.button .floating.label {
+    border-radius: 10px;
+    bottom: -1em;
+    min-width: 2em;
+    padding: 2px 8px;
+    top: initial;
+}
+
+#menu .cart.popup,
+#menu .cart.popup:before {
+    background-color: $cartPopupBackground;
+    box-shadow: none;
+}
+
+#menu .cart .ui.list .list > .item > img.image + .content,
+#menu .cart .ui.list > .item > img.image + .content {
+    width: calc(100% - 36px);
+}
+
+#menu .cart .ui.list .list > .item > img.image + .content .description ,
+#menu .cart .ui.list > .item > img.image + .content .description {
+    color: $textColor;
+    height: 28px;
+    margin-top: 5px;
+}
+
+#menu .cart .ui.list .list > .item .left,
+#menu .cart .ui.list > .item .left {
+    float: left;
+}
+
+#menu .cart .ui.list .list > .item .left span,
+#menu .cart .ui.list > .item .left span {
+    vertical-align: middle;
+}
+
+#menu .cart .ui.list .list > .item .right,
+#menu .cart .ui.list > .item .right {
+    float: right;
+
+}
+
+#menu .cart .ui.list .list > .item .qty .ui.label,
+#menu .cart .ui.list > .item .qty .ui.label {
+    background-color: $cartPopupQuantityBackground;
+    color: $textColor;
+}
+
+#menu .cart .ui.list .list > .item .right.ui.label::after ,
+#menu .cart .ui.list > .item .right.ui.label::after {
+    background-color: $cartPopupBackground !important;
+}
+
+.ui.inverted.header {
+    color: $headerColor !important;
+}
+
+@media only screen and (max-width: 767px) {
+    header .ui.large.inverted.menu  {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .ui.three.doubling.cards > .card {
+        width: calc(100% - 2em);
+    }
+}
+
+.ui.fluid.inverted.card {
+    background-color: $cardBackground;
+}
+
+.ui.fluid.card > .content {
+    background-color: $cardContentBackground;
+}
+
+.ui.fluid.card > .content > a.header {
+    color: $textColor;
+}
+
+.ui.fluid.card .sylius-product-price.ui.tag.label {
+    background-color: $green !important;
+    border-color: $green !important;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.ui.fluid.card .sylius-product-price.ui.tag.label::after {
+    background-color: $cardContentBackground !important;
+}
+
+.ui.breadcrumb .divider.inverted {
+    color: $breadcrumbDividerColor;
+}
+
+.ui.header.tag.label::after {
+    background-color: $bodyBackground !important;
+}
+
+.ui.small.images.product-images .ui.image img {
+    border-radius: .3125em;
+}
+
+.ui.star.rating .icon {
+    color: $starRatingIconBackground;
+}
+
+.ui.star.rating .active.icon {
+    text-shadow: none !important;
+}
+
+#product-taxes.column {
+    padding-top: 0;
+}
+
+#product-taxes .ui.sub.header {
+    text-transform: none;
+}
+
+#product-price.ui.green.tag.label.header {
+    background-color: $green !important;
+    border-color: $green !important;
+}
+
+.ui.attached.inverted.menu {
+    border-bottom: 2px solid $attachedMenuBorderColor;
+}
+
+.ui.inverted.menu .item:before {
+    display: none;
+}
+
+.ui.inverted.menu:not(.text) .dropdown.item,
+.ui.inverted.menu:not(.text) .link.item,
+.ui.inverted.menu:not(.text) a.item,
+.ui.link.inverted.menu:not(.text) .item {
+    border: 1px solid $attachedMenuItemBorderColor;
+}
+
+.ui.inverted.menu:not(.text) .active.item {
+    border: 1px solid $attacheMenuActiveItemBorderColor;
+}
+
+.ui.inverted.attached.segment {
+    border: none;
+}
+
+.ui.dividing.header .sub.header {
+    padding: 10px 0;
+}
+
+.ui.tab.segment.attached.segment {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+.ui.tab.segment.product-details {
+    line-height: 1.5;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+
+.ui.comments {
+    max-width: 100%;
+}
+
+.ui.comments .comment:not(:nth-of-type(1)) {
+    margin: 1.5em 0 0;
+}
+
+.ui.comments .comment .author {
+    color: $textColor;
+}
+
+.ui.comments .comment .metadata {
+    color: $greyTextColor;
+}
+
+.ui.comments .comment .title {
+    font-size: 1.2em;
+    font-weight: 200;
+    padding-top: 10px;
+}
+
+.ui.comments .comment .text {
+    color: $textColor;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    white-space: pre-wrap;
+    word-spacing: 2px;
+}
+
+.lb-outerContainer {
+    background-color: $lightboxBackground;
+}
+
+.lightbox .lb-image {
+    border-color: $lightboxBorderColor;
+}
+
+.ui.horizontal.list.sylius-product-options .item:not(:first-child) {
+    border-left-color: $cartProductOptionsBorderColor;
+}
+
+@media only screen and (max-width: 991px) {
+    .ui.horizontal.list.sylius-product-options {
+        text-align: center;
+        margin: auto;
+        display: block;
+    }
+
+    .ui.horizontal.list.sylius-product-options .item {
+        display: block;
+        border-left: none;
+        padding: 0.5rem 0 !important;
+    }
+
+    .ui.horizontal.list.sylius-product-options .item:not(:first-child) {
+        border-top: 1px solid $cartProductOptionsBorderColor;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    #sylius-cart-items .ui.inverted.header,
+    #sylius-order .ui.inverted.header {
+        margin-bottom: 0.4em;
+    }
+
+    #sylius-cart-items .ui.inverted.header img,
+    #sylius-order  .ui.inverted.header img {
+        display: block;
+        margin: auto;
+        margin-bottom: 0.2em;
+    }
+
+    #sylius-cart-items .ui.inverted.header img + .content,
+    #sylius-order .ui.inverted.header img + .content {
+        padding-left: 0;
+        text-align: center;
+    }
+}
+
+#sylius-cart-items .sylius-product-name,
+#sylius-order .sylius-product-name {
+    white-space: normal;
+}
+
+#sylius-cart-items .sylius-quantity input[type=number] {
+    min-width: 50px;
+    padding: 0.5rem;
+}
+
+#sylius-cart-items .sylius-quantity input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+}
+
+.ui.steps.inverted .step.disabled,
+.ui.steps.inverted .step.disabled::after,
+.ui.steps.inverted .step.completed,
+.ui.steps.inverted .step.completed::after {
+    background: $completedStepBackground;
+    border-color: $completedStepBorderColor;
+}
+
+@media only screen and (max-width: 767px) {
+    .ui.steps.inverted .step {
+        flex-wrap: wrap;
+    }
+
+    .ui.steps.inverted .step .icon {
+        margin: 0 0 10px 0;
+        width: 100%;
+    }
+
+    .ui.steps.inverted .step.disabled .icon {
+        margin-bottom: -15px;
+    }
+
+    .ui.steps.inverted .step .content {
+        text-align: center
+    }
+
+    .ui.steps.inverted .step.disabled .description {
+        display: none;
+    }
+}
+
+.ui.steps.inverted .step.disabled .title,
+.ui.steps.inverted .step.disabled .description,
+.ui.steps.inverted .step.completed .title,
+.ui.steps.inverted .step.completed .description {
+    color: $completedStepTextColor;
+}
+
+.ui.inverted.form .ui.toggle.checkbox label:before {
+    background-color: $checkboxBackground;
+}
+
+.ui.inverted.form .ui.toggle.checkbox.checked label:before {
+    background-color: $checkboxCheckedBackground;
+}
+
+.ui.inverted.form .ui.toggle.checkbox input:checked~.box,
+.ui.inverted.form .ui.toggle.checkbox input:checked~label {
+    color: $textColor;
+}
+
+.ui.basic.table thead tr th,
+.ui.basic.table tbody tr,
+.ui.basic.table tfoot tr td {
+    border-color: $tableBorderColor;
+}
+
+.ui.celled.table tr td,
+.ui.celled.table tr th {
+    border-color: $tableBorderColor !important;
+}
+
+.ui.fee.tag.label::after {
+    background-color: $cardBackground !important;
+}
+
+.ui.items > .item > .content > .description {
+    color: $textColor;
+}
+
+.ui.items > .item > .content > .description p {
+    white-space: pre-line;
+}
+
+.modals .ui.modal:not(.basic) .content {
+    background-color: $modalBackground;
+    white-space: pre-line;
+}
+
+.field #sylius_checkout_complete_terms {
+    margin-top: 1rem;
+}
+
+.ui.inverted.dropdown .menu {
+    background: $dropdownMenuBackground;
+}
+
+.ui.inverted.dropdown .menu .item {
+    color: $dropdownMenuColor;
+}
+
+.ui.inverted.table th a,
+.ui.inverted.table th a:visited {
+    color: $textColor;
+}
+
+#sylius-payment-method-instructions .ui.inverted.segment {
+    white-space: pre-wrap;
+}
+
+/* TODO: Remove after invoice-plugin template is overridable */
+#order-invoices.ui.segment {
+    background: $segmentBackground;
+}
+
+#shipping-state.ui.dividing.header {
+    border-bottom-color: $headerBorderColor;
+    color: $headerColor;
+}
+
+#order-invoices .ui.table {
+    background: $tableBackground;
+    color: $textColor;
+    border: none;
+}
+
+#order-invoices .ui.table th {
+    background-color: $tableHeadBackground;
+    color: $textColor;
+}
+/* TODO: END */
+
+#bitbag-faqs details summary.bitbag-question {
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    outline: none;
+    padding: .5em;
+}
+
+#bitbag-faqs details p {
+    font-size: 1.1rem;
+    letter-spacing: 1pt;
+    line-height: 1.5;
+    white-space: pre-line;
+    word-spacing: 1pt;
+}

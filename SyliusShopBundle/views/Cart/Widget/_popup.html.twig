@@ -1,0 +1,35 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+{% if cart.empty %}
+    {{ 'sylius.ui.your_cart_is_empty'|trans }}.
+{% else %}
+    <div class="ui list">
+        {% for item in cart.items %}
+            {% if item.product.imagesByType('thumbnail') is not empty %}
+                {% set cartItemPath = item.product.imagesByType('thumbnail').first.path|imagine_filter(filter|default('sylius_shop_product_thumbnail')) %}
+            {% elseif item.product.images.first %}
+                {% set cartItemPath = item.product.images.first.path|imagine_filter(filter|default('sylius_shop_product_thumbnail')) %}
+            {% else %}
+                {% set cartItemPath = '//placehold.it/200x200' %}
+            {% endif %}
+
+            <div class="item">
+                <img src="{{ cartItemPath }}" alt="{{ item.product }}" class="ui avatar image" />
+                <div class="content">
+                    <a class="header">{{ item.product }}</a>
+                    <div class="description">
+                        <div class="qty left"><span>{{ 'sylius.ui.qty'|trans }}:</span> <div class="ui label">{{ item.quantity }}</div></div>
+                        <div class="ui tag label green right">{{ money.convertAndFormat(item.unitPrice) }}</div>
+                    </div>
+                </div>
+                <div class="ui inverted divider"></div>
+            </div>
+        {% endfor %}
+        <div class="item">
+            <strong>{{ 'sylius.ui.subtotal'|trans }}</strong>: <span class="right">{{ money.convertAndFormat(cart.itemsTotal) }}</span>
+        </div>
+    </div>
+    <a href="{{ path('sylius_shop_cart_summary') }}" class="ui fluid basic inverted text button">{{ 'sylius.ui.view_and_edit_cart'|trans }}</a>
+    <div class="ui divider"></div>
+    <a href="{{ path('sylius_shop_checkout_start') }}" class="ui fluid green button">{{ 'sylius.ui.checkout'|trans }}</a>
+{% endif %}

@@ -1,0 +1,14 @@
+{% include '@SyliusShop/Common/Order/_addresses.html.twig' %}
+
+<div class="ui inverted segment">
+    {% include '@SyliusShop/Common/Order/_table.html.twig' %}
+</div>
+
+<div class="ui two column stackable grid">
+    <div class="column" id="sylius-payments">
+        {% include '@SyliusShop/Common/Order/_payments.html.twig' %}
+    </div>
+    <div class="column" id="sylius-shipments">
+        {% include '@SyliusShop/Common/Order/_shipments.html.twig' %}
+    </div>
+</div>
