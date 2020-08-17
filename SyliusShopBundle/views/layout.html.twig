@@ -23,6 +23,7 @@
 
 <body class="pushable">
 {{ sylius_template_event('sylius.shop.layout.before_body') }}
+{{ render(url('sylius_shop_partial_channel_menu_taxon_index', {'template': '@SyliusShop/Taxon/_horizontalSidebarMenu.html.twig'})) }}
 <div class="pusher">
     {% block top %}
         <div id="menu" class="ui large sticky inverted menu z-depth-2">

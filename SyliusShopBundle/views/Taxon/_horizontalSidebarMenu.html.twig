@@ -1,4 +1,4 @@
-{% macro item(taxon) %}
+{% macro sidebarItem(taxon) %}
     {% import _self as macros %}
 
     {% if taxon.children|length > 0 %}
@@ -7,7 +7,7 @@
             <i class="dropdown icon"></i>
             <div class="menu">
                 {% for childTaxon in taxon.children %}
-                    {{ macros.item(childTaxon) }}
+                    {{ macros.sidebarItem(childTaxon) }}
                 {% endfor %}
             </div>
         </div>
@@ -19,9 +19,14 @@
 {% import _self as macros %}
 
 {% if taxons|length > 0 %}
-<div class="ui large inverted menu" {{ sylius_test_html_attribute('menu') }}>
+<div class="ui vertical inverted sidebar menu">
+    <a href="{{ path('sylius_shop_homepage') }}" class="header item">
+        <img src="{{ asset('assets/vaachar-theme/images/logo.png', 'vaaCharTheme') }}" alt="Shop logo" class="ui mini image logo" />
+        <span>VaaChar</span>
+    </a>
+
     {% for taxon in taxons %}
-        {{ macros.item(taxon) }}
+        {{ macros.sidebarItem(taxon) }}
     {% endfor %}
 </div>
 {% endif %}
