@@ -315,6 +315,39 @@ body.pushable > .pusher {
     }
 }
 
+.image-container .main-text {
+    background: $bannerTextBackground;
+    color: $bannerTextColor;
+    font-size: 1.3rem;
+    padding: 10px 15px;
+    position: initial !important;
+    text-align: center;
+    width: 100%;
+}
+
+.image-container .secondary-text {
+    background: $bannerTextBackground;
+    color: $bannerTextColor;
+    padding: 10px 15px;
+    position: initial !important;
+    text-align: center;
+    width: 100%;
+}
+
+.image-container .main-text:empty,
+.image-container .secondary-text:empty {
+    display: none;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: $bannerSwiperButtonColor !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: $bannerSwiperBulletActiveBackground !important;
+}
+
 @media only screen and (max-width: 767px) {
     .ui.three.doubling.cards > .card {
         width: calc(100% - 2em);
