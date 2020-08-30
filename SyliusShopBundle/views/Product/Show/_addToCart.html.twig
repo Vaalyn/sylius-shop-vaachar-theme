@@ -15,6 +15,9 @@
             {% include '@SyliusShop/Product/Show/_options.html.twig' %}
         {% endif %}
     {% endif %}
+
+    {% include '@Brille24SyliusCustomerOptionsPlugin/Product/Shop/_customerOptions.html.twig' %}
+
     {{ form_row(form.cartItem.quantity, sylius_test_form_attribute('quantity')) }}
 
     {{ sylius_template_event('sylius.shop.product.show.add_to_cart_form', {'product': product, 'order_item': order_item}) }}

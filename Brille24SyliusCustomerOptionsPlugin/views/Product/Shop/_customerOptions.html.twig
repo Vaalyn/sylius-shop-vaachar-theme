@@ -1,0 +1,10 @@
+{% form_theme form.customer_options with 'Brille24SyliusCustomerOptionsPlugin:Form:product_theme.html.twig' %}
+
+{% if product.customerOptionGroup != null %}
+    {% include '@Brille24SyliusCustomerOptionsPlugin/all/_date.html.twig' only %}
+
+    <h4>{{ 'brille24.ui.product_customization'|trans }}</h4>
+    {{ form_widget(form.customer_options) }}
+
+    <div class="ui inverted divider"></div>
+{% endif %}

@@ -3,6 +3,7 @@
 {% set itemsSubtotal = sylius_order_items_subtotal(cart) %}
 {% set taxIncluded = sylius_order_tax_included(cart) %}
 {% set taxExcluded = sylius_order_tax_excluded(cart) %}
+{% set customerOptionAdjustment = constant('Brille24\\SyliusCustomerOptionsPlugin\\Services\\CustomerOptionRecalculator::CUSTOMER_OPTION_ADJUSTMENT') %}
 
 <div class="ui inverted segment">
     <h2 class="ui dividing inverted header">{{ 'sylius.ui.summary'|trans }}</h2>
@@ -15,6 +16,12 @@
             <td>{{ 'sylius.ui.items_total'|trans }}:</td>
             <td class="right aligned">{{ money.convertAndFormat(itemsSubtotal) }}</td>
         </tr>
+        {% if cart.getAdjustmentsTotalRecursively(customerOptionAdjustment) > 0 %}
+            <tr>
+                <td>{{ 'brille24.ui.customization_total'|trans }}:</td>
+                <td class="right aligned">{{ money.convertAndFormat(cart.getAdjustmentsTotalRecursively(customerOptionAdjustment)) }}</td>
+            </tr>
+        {% endif %}
         {% if cart.orderPromotionTotal %}
             <tr>
                 <td>{{ 'sylius.ui.discount'|trans }}:</td>

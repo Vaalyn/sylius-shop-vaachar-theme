@@ -3,6 +3,7 @@
 {% set itemsSubtotal = sylius_order_items_subtotal(order) %}
 {% set taxIncluded = sylius_order_tax_included(order) %}
 {% set taxExcluded = sylius_order_tax_excluded(order) %}
+{% set customerOptionAdjustment = constant('Brille24\\SyliusCustomerOptionsPlugin\\Services\\CustomerOptionRecalculator::CUSTOMER_OPTION_ADJUSTMENT') %}
 
 <div class="ui inverted segment">
     <table class="ui very basic inverted unstackable table" id="sylius-checkout-subtotal" {{ sylius_test_html_attribute('checkout-subtotal') }}>
@@ -35,6 +36,16 @@
                     {{ money.convertAndFormat(itemsSubtotal) }}
                 </td>
             </tr>
+            {% if order.getAdjustmentsTotalRecursively(customerOptionAdjustment) > 0 %}
+                <tr>
+                    <td colspan="1">
+                        <strong>{{ 'brille24.ui.customization_total'|trans }}:</strong>
+                    </td>
+                    <td colspan="2" id="sylius-summary-customizations-subtotal" class="right aligned">
+                        {{ money.convertAndFormat(order.getAdjustmentsTotalRecursively(customerOptionAdjustment)) }}
+                    </td>
+                </tr>
+            {% endif %}
 
             {% set allItemsGermanSmallBusiness = true %}
 
