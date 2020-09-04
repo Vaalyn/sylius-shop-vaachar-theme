@@ -56,6 +56,22 @@ a {
     background-color: $green;
 }
 
+.ui.input {
+    display: flex;
+}
+
+.ui.input > input {
+    flex: 1 auto;
+}
+
+.ui.ribbon.label {
+    left: calc(-1rem - 1.3em);
+}
+
+.ui.fixed.loader {
+    position: fixed;
+}
+
 body {
     color: $textColor;
     letter-spacing: 1pt;
@@ -591,7 +607,7 @@ body.pushable > .pusher {
 
 .ui.inverted.form .ui.toggle.checkbox input:checked~.box,
 .ui.inverted.form .ui.toggle.checkbox input:checked~label {
-    color: $textColor;
+    color: $textColor !important;
 }
 
 .ui.basic.table thead tr th,

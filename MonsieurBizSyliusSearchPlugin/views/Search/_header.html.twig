@@ -1,0 +1,10 @@
+{% include '@MonsieurBizSyliusSearchPlugin/Event/event.html.twig' with {'eventName': 'sylius.shop.search.header.before', 'eventData': {'query': query}} %}
+
+<h1 class="ui large section dividing center aligned inverted header">
+    {{ 'monsieurbiz_searchplugin.search.result.search_result'|trans({'%query%': query}) }}
+    <div class="ui grey label">
+        {{ 'monsieurbiz_searchplugin.search.result.search_result_count'|trans({'%count%': resultSet.totalHits}) }}
+    </div>
+</h1>
+
+{% include '@MonsieurBizSyliusSearchPlugin/Event/event.html.twig' with {'eventName': 'sylius.shop.search.header.after', 'eventData': {'query': query}} %}
