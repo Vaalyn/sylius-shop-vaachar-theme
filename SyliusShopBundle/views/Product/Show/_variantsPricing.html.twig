@@ -1,13 +1,24 @@
 {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
 
 <div id="sylius-variants-pricing" data-unavailable-text="{{ 'sylius.ui.unavailable'|trans }}">
-{% for variant in product.variants %}
-    {% set productVariantTaxRate = vaachar_tax_rate_product_variant(variant) %}
+{% for price in pricing %}
+    {% set productVariantTaxRate = vaachar_tax_rate_product_variant(price.variant) %}
 
     {% set isGermanSmallBusiness = vaachar_is_german_small_business_tax_rate(productVariantTaxRate) %}
 
-    {% set productVariantOptionValues = vaachar_option_prices_product_variant(variant) %}
-    <div {% for option, value in productVariantOptionValues %}data-{{ option }}="{% if option == 'value' %}{{ money.convertAndFormat(value) }}{% else %}{{ value|replace({'\"': '\''}) }}{% endif %}" {{ sylius_test_html_attribute('variant-price') }}{% endfor %} {% if productVariantTaxRate is not null %}data-tax-rate="{{ productVariantTaxRate.amount }}" data-is-german-small-business="{{ isGermanSmallBusiness }}" data-taxes-included-in-price="{{ productVariantTaxRate.includedInPrice }}"{% endif %}></div>
+    <div
+        {% for option, value in price %}
+            {%- if option != 'variant' -%}
+                data-{{ option }}="{% if option == 'value' %}{{ money.convertAndFormat(value) }}{% else %}{{ value|replace({'\"': '\''}) }}{% endif %}"
+                {{ sylius_test_html_attribute('variant-price') }}
+            {%- endif -%}
+        {% endfor %}
+        {%- if productVariantTaxRate is not null -%}
+            data-tax-rate="{{ productVariantTaxRate.amount }}"
+            data-is-german-small-business="{{ isGermanSmallBusiness }}"
+            data-taxes-included-in-price="{{ productVariantTaxRate.includedInPrice }}"
+        {%- endif -%}>
+    </div>
 {% endfor %}
 </div>
 
