@@ -1,5 +1,5 @@
 <div class="four wide column">
-    <h4 class="ui inverted header">{{ 'sylius.ui.your_store'|trans }}</h4>
+    <h4 class="ui inverted header">{{ sylius.channel.name }}</h4>
     <div class="ui inverted link list">
         {{ render(path('bitbag_sylius_cms_plugin_shop_page_show_link_by_code', {'code' : 'about_us', 'template' : '@BitBagSyliusCmsPlugin/Shop/Page/Show/_link.html.twig'})) }}
         {{ render(path('bitbag_sylius_cms_plugin_shop_page_show_link_by_code', {'code' : 'imprint', 'template' : '@BitBagSyliusCmsPlugin/Shop/Page/Show/_link.html.twig'})) }}
