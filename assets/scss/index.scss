@@ -233,6 +233,10 @@ body.pushable > .pusher {
     background: $dropdownMenuBackground;
 }
 
+.ui.menu .dropdown.item .inverted.menu .item {
+    color: $dropdownMenuColor !important;
+}
+
 #menu .cart.button {
     border-radius: 0;
     margin-right: 0;

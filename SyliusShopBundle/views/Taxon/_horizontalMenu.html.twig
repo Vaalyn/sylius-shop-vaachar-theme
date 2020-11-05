@@ -5,7 +5,7 @@
         <div class="ui dropdown item" {{ sylius_test_html_attribute('menu-item') }}>
             <span class="text">{{ taxon.name }}</span>
             <i class="dropdown icon"></i>
-            <div class="menu">
+            <div class="inverted menu">
                 {% for childTaxon in taxon.children %}
                     {{ macros.item(childTaxon) }}
                 {% endfor %}
