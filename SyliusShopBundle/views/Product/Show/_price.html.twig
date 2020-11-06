@@ -1,28 +1,44 @@
 {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
 
+{% set variant = product|sylius_resolve_variant %}
+{% set hasDiscount = variant|sylius_has_discount({'channel': sylius.channel}) %}
+
 <div class="ui one column grid">
-    <div class="column">
-        <span class="ui huge green tag label header" id="product-price" {{ sylius_test_html_attribute('product-price', money.calculatePrice(product|sylius_resolve_variant)) }}>
-            {{ money.calculatePrice(product|sylius_resolve_variant) }}
-        </span>
+    {% if hasDiscount %}
+        <div class="row">
+            <div class="column">
+                <span class="ui small red tag label header" id="product-original-price" {{ sylius_test_html_attribute('product-original-price', money.calculatePrice(variant)) }}>
+                    <del>{{ money.calculateOriginalPrice(variant) }}</del>
+                </span>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="column">
+            <span class="ui huge green tag label header" id="product-price" {{ sylius_test_html_attribute('product-price', money.calculatePrice(product|sylius_resolve_variant)) }}>
+                {{ money.calculatePrice(variant) }}
+            </span>
+        </div>
     </div>
 
-    <div id="product-taxes" class="nine wide column">
-        {% set productVariantTaxRate = vaachar_tax_rate_product_variant(product|sylius_resolve_variant) %}
-        {% set isGermanSmallBusiness = vaachar_is_german_small_business_tax_rate(productVariantTaxRate) %}
+    <div class="row">
+        <div id="product-taxes" class="nine wide column">
+            {% set productVariantTaxRate = vaachar_tax_rate_product_variant(variant) %}
+            {% set isGermanSmallBusiness = vaachar_is_german_small_business_tax_rate(productVariantTaxRate) %}
 
-        <span id="product-taxes-text" class="ui sub header grey{% if productVariantTaxRate is empty or isGermanSmallBusiness == true %} hide{% endif %}">
-            {% if productVariantTaxRate is not empty %}
-                {% if productVariantTaxRate.includedInPrice %}
-                    <span id="product-taxtes-included-in-price">{{ 'vaachar.tax_rate.inluded_in_price'|trans }}</span><span id="product-taxtes-excluded-from-price" class="hide">{{ 'vaachar.tax_rate.excluded_from_price'|trans }}</span> <span id="product-tax-rate-percentage">{{ productVariantTaxRate.amount * 100 }}</span>% {{ 'vaachar.tax_rate.vat'|trans }}
+            <span id="product-taxes-text" class="ui sub header grey{% if productVariantTaxRate is empty or isGermanSmallBusiness == true %} hide{% endif %}">
+                {% if productVariantTaxRate is not empty %}
+                    {% if productVariantTaxRate.includedInPrice %}
+                        <span id="product-taxtes-included-in-price">{{ 'vaachar.tax_rate.inluded_in_price'|trans }}</span><span id="product-taxtes-excluded-from-price" class="hide">{{ 'vaachar.tax_rate.excluded_from_price'|trans }}</span> <span id="product-tax-rate-percentage">{{ productVariantTaxRate.amount * 100 }}</span>% {{ 'vaachar.tax_rate.vat'|trans }}
+                    {% else %}
+                        <span id="product-taxtes-included-in-price" class="hide">{{ 'vaachar.tax_rate.inluded_in_price'|trans }}</span><span id="product-taxtes-excluded-from-price">{{ 'vaachar.tax_rate.excluded_from_price'|trans }}</span> <span id="product-tax-rate-percentage">{{ productVariantTaxRate.amount * 100 }}</span>% {{ 'vaachar.tax_rate.vat'|trans }}
+                    {% endif %}
                 {% else %}
-                    <span id="product-taxtes-included-in-price" class="hide">{{ 'vaachar.tax_rate.inluded_in_price'|trans }}</span><span id="product-taxtes-excluded-from-price">{{ 'vaachar.tax_rate.excluded_from_price'|trans }}</span> <span id="product-tax-rate-percentage">{{ productVariantTaxRate.amount * 100 }}</span>% {{ 'vaachar.tax_rate.vat'|trans }}
+                    <span id="product-taxtes-included-in-price">{{ 'vaachar.tax_rate.inluded_in_price'|trans }}</span><span id="product-taxtes-excluded-from-price" class="hide">{{ 'vaachar.tax_rate.excluded_from_price'|trans }}</span> <span id="product-tax-rate-percentage"></span>% {{ 'vaachar.tax_rate.vat'|trans }}
                 {% endif %}
-            {% else %}
-                <span id="product-taxtes-included-in-price">{{ 'vaachar.tax_rate.inluded_in_price'|trans }}</span><span id="product-taxtes-excluded-from-price" class="hide">{{ 'vaachar.tax_rate.excluded_from_price'|trans }}</span> <span id="product-tax-rate-percentage"></span>% {{ 'vaachar.tax_rate.vat'|trans }}
-            {% endif %}
-        </span>
-        <span id="product-taxes-text-german-small-business" class="ui sub header grey inverted {% if isGermanSmallBusiness == false %} hide{% endif %}">{{ 'vaachar.tax_rate.german_small_business'|trans }}</span>
+            </span>
+            <span id="product-taxes-text-german-small-business" class="ui sub header grey inverted {% if isGermanSmallBusiness == false %} hide{% endif %}">{{ 'vaachar.tax_rate.german_small_business'|trans }}</span>
+        </div>
     </div>
-
 </div>
