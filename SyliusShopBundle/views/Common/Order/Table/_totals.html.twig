@@ -16,11 +16,15 @@
 {% set allItemsGermanSmallBusiness = true %}
 
 {% for item in order.items %}
-    {% set productVariantTaxRate = vaachar_tax_rate_product_variant(item.getVariant.product|sylius_resolve_variant) %}
-    {% set isGermanSmallBusiness = vaachar_is_german_small_business_tax_rate(productVariantTaxRate) %}
+    {% set productVariant = item.getVariant.product|sylius_resolve_variant %}
 
-    {% if isGermanSmallBusiness == false %}
-        {% set allItemsGermanSmallBusiness = false %}
+    {% if productVariant %}
+        {% set productVariantTaxRate = vaachar_tax_rate_product_variant(productVariant) %}
+        {% set isGermanSmallBusiness = vaachar_is_german_small_business_tax_rate(productVariantTaxRate) %}
+
+        {% if isGermanSmallBusiness == false %}
+            {% set allItemsGermanSmallBusiness = false %}
+        {% endif %}
     {% endif %}
 {% endfor %}
 
