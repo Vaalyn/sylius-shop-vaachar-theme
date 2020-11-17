@@ -21,7 +21,21 @@
         <a href="#" class="inverted header sylius-product-name">{{ result.attribute('name').value | join }}</a>
 
         {% if result.price is not empty %}
-            <div class="sylius-product-price">{{ money.format(result.priceByChannelAndCurrency(channel.code, currencyCode).value, currencyCode) }}</div>
+            {% set resultPriceByChannelAndCurrency = result.priceByChannelAndCurrency(channel.code, currencyCode) %}
+
+            <div class="sylius-product-price">
+                {% if result.originalPrice %}
+                    {% set resultOriginalPriceByChannelAndCurrency = result.getOriginalPriceByChannelAndCurrency(channel.code, currencyCode) %}
+
+                    {% if resultOriginalPriceByChannelAndCurrency.value > resultPriceByChannelAndCurrency.value %}
+                        <span class="sylius-product-original-price">
+                            <del>{{ money.format(resultOriginalPriceByChannelAndCurrency.value, currencyCode) }}</del>&nbsp;|
+                        </span>
+                    {% endif %}
+                {% endif %}
+
+                {{ money.format(resultPriceByChannelAndCurrency.value, currencyCode) }}
+            </div>
         {% endif %}
     </div>
 </div>

@@ -21,7 +21,19 @@
         <a href="{{ path(search_result_url_param(result).path, search_result_url_param(result).params) }}" class="center aligned header sylius-product-name">{{ result.attribute('name').value | join }}</a>
         {% if result.price is not empty %}
             <div class="right aligned">
-                <div class="sylius-product-price ui tag label green" {{ sylius_test_html_attribute('product-price') }}>{{ money.format(result.priceByChannelAndCurrency(channel.code, currencyCode).value, currencyCode) }}</div>
+                {% set resultPriceByChannelAndCurrency = result.priceByChannelAndCurrency(channel.code, currencyCode) %}
+
+                {% if result.originalPrice %}
+                    {% set resultOriginalPriceByChannelAndCurrency = result.getOriginalPriceByChannelAndCurrency(channel.code, currencyCode) %}
+
+                    {% if resultOriginalPriceByChannelAndCurrency.value > resultPriceByChannelAndCurrency.value %}
+                        <span class="ui small red tag label header" id="product-original-price" {{ sylius_test_html_attribute('product-original-price') }}>
+                            <del>{{ money.format(resultOriginalPriceByChannelAndCurrency.value, currencyCode) }}</del>
+                        </span>
+                    {% endif %}
+                {% endif %}
+
+                <div class="sylius-product-price ui tag label green" {{ sylius_test_html_attribute('product-price') }}>{{ money.format(resultPriceByChannelAndCurrency.value, currencyCode) }}</div>
             </div>
         {% endif %}
     </div>
