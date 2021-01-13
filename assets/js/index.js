@@ -78,7 +78,9 @@
     $(document).ready(() => {
         $(document).variantPricesTaxes();
 
-        $('.ui.sidebar').sidebar('attach events', '#menu .item.sidebar-trigger');
+        if ($('#menu .item.sidebar-trigger').length) {
+            $('.ui.sidebar').sidebar('attach events', '#menu .item.sidebar-trigger');
+        }
 
         if (monsieurbizSearchPlugin.instantEnabled) {
             $('body').bind('click', function(e) {
