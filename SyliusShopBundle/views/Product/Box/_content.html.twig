@@ -1,31 +1,35 @@
 {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
 
 {% set variant = product|sylius_resolve_variant %}
-{% set hasDiscount = variant|sylius_has_discount({'channel': sylius.channel}) %}
+{% set hasDiscount = false %}
 
-<div class="ui fluid inverted card z-depth-1" {{ sylius_test_html_attribute('product') }}>
-    <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="blurring dimmable image">
-        <div class="ui dimmer">
-            <div class="content">
-                <div class="center">
-                    <div class="ui inverted button">{{ 'sylius.ui.view_more'|trans }}</div>
+{% if variant %}
+    {% set hasDiscount = variant|sylius_has_discount({'channel': sylius.channel}) %}
+
+    <div class="ui fluid inverted card z-depth-1" {{ sylius_test_html_attribute('product') }}>
+        <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="blurring dimmable image">
+            <div class="ui dimmer">
+                <div class="content">
+                    <div class="center">
+                        <div class="ui inverted button">{{ 'sylius.ui.view_more'|trans }}</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        {% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': product} %}
-    </a>
-    <div class="content" {{ sylius_test_html_attribute('product-content') }}>
-        <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="center aligned header sylius-product-name" {{ sylius_test_html_attribute('product-name', product.name) }}>{{ product.name }}</a>
-        {% if not product.variants.empty() %}
-            <div class="right aligned">
-                {% if hasDiscount %}
-                    <span class="ui small red tag label header" id="product-original-price" {{ sylius_test_html_attribute('product-original-price', money.calculatePrice(variant)) }}>
-                        <del>{{ money.calculateOriginalPrice(variant) }}</del>
-                    </span>
-                {% endif %}
+            {% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': product} %}
+        </a>
+        <div class="content" {{ sylius_test_html_attribute('product-content') }}>
+            <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="center aligned header sylius-product-name" {{ sylius_test_html_attribute('product-name', product.name) }}>{{ product.name }}</a>
+            {% if not product.variants.empty() %}
+                <div class="right aligned">
+                    {% if hasDiscount %}
+                        <span class="ui small red tag label header" id="product-original-price" {{ sylius_test_html_attribute('product-original-price', money.calculatePrice(variant)) }}>
+                            <del>{{ money.calculateOriginalPrice(variant) }}</del>
+                        </span>
+                    {% endif %}
 
-                <div class="sylius-product-price ui tag label green" {{ sylius_test_html_attribute('product-price') }}>{{ money.calculatePrice(product|sylius_resolve_variant) }}</div>
-            </div>
-        {% endif %}
+                    <div class="sylius-product-price ui tag label green" {{ sylius_test_html_attribute('product-price') }}>{{ money.calculatePrice(product|sylius_resolve_variant) }}</div>
+                </div>
+            {% endif %}
+        </div>
     </div>
-</div>
+{% endif %}
